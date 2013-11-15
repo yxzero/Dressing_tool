@@ -106,7 +106,13 @@ return  array(
     'SESSION_OPTIONS'       => array(), // session 配置数组 支持type name id path expire domain 等参数
     'SESSION_TYPE'          => '', // session hander类型 默认无需设置 除非扩展了session hander驱动
     'SESSION_PREFIX'        => '', // session 前缀
-    //'VAR_SESSION_ID'      => 'session_id',     //sessionID的提交变量
+	'SESSION_EXPIRE'		=>'300000',
+	'SESSION_NAME'			=>'ThinkID',                // 默认Session_name
+    'SESSION_PATH'			=>'',                        // 采用默认的Session save path 
+	//'SESSION_TYPE'			=>'DB',                        // 默认Session类型 支持 DB 和 File  
+	'SESSION_TABLE'			=>'think_session',        // 数据库Session方式表名 
+	'SESSION_CALLBACK'		=>'',                        // 反序列化对象的回调方法 
+	'VAR_SESSION_ID'      => 'session_id',     //sessionID的提交变量
 
     /* 模板引擎设置 */
     'TMPL_CONTENT_TYPE'     => 'text/html', // 默认模板输出类型
@@ -127,6 +133,7 @@ return  array(
     'URL_DENY_SUFFIX'       =>  'ico|png|gif|jpg', // URL禁止访问的后缀设置
     'URL_PARAMS_BIND'       =>  true, // URL变量绑定到Action方法参数
     'URL_404_REDIRECT'      =>  '', // 404 跳转页面 部署模式有效
+	'USER_AUTH_KEY'			=>  'authId',
 
     /* 系统变量名称设置 */
     'VAR_GROUP'             => 'g',     // 默认分组获取变量

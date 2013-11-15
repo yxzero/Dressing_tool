@@ -1,9 +1,14 @@
 <?php
 
-class IndexAction extends Action{
+class IndexAction extends PublicAction{
 	
 	//初始化数据
 	public function index(){
+		if( isset($_SESSION['name']) ){
+	   		echo "欢迎回来：".$_SESSION['name'];
+		}else{
+	   		echo "未登录";
+		}
 		$list = M('collection')->order('id DESC')->limit(10)->select();
 		$i=0;
 		while($i<10 && $list[$i]['cover'])
@@ -12,7 +17,7 @@ class IndexAction extends Action{
 			$imglist= getimagesize($str[$i]);
 			$height=$imglist[1];
 			$with=$imglist[0];
-			$list[$i]['height']=(int)(220/$with*$height);
+			$list[$i]['height']=(int)(200/$with*$height)+38;
 			$i=$i+1;
 		}
 		$this->assign('list', $list);
@@ -31,14 +36,15 @@ class IndexAction extends Action{
 			$imglist= getimagesize($str[$i]);
 			$height=$imglist[1];
 			$with=$imglist[0];
-			$list[$i]['height']=(int)(220/$with*$height);
+			$list[$i]['height']=(int)(200/$with*$height)+38;
 			$i=$i+1;
+			
 		}
         $this->ajaxReturn($list);
 	}
 	public function tagfind(){
 		$tagname = $_REQUEST['altag'];
-		if(!$abname){$this->showmsg_box('系统查找不到该操作，请重试',__APP__,0,3);} 
+		if(!$tagname){$this->showmsg_box('系统查找不到该操作，请重试',__APP__,0,3);} 
 		$condition['tag'] = $tagname;
 		$list = M('collection')->where($condition)->order('id DESC')->limit(10)->select();
 		$i=0;
@@ -48,7 +54,7 @@ class IndexAction extends Action{
 			$imglist= getimagesize($str[$i]);
 			$height=$imglist[1];
 			$with=$imglist[0];
-			$list[$i]['height']=(int)(220/$with*$height);
+			$list[$i]['height']=(int)(200/$with*$height)+38;
 			$i=$i+1;
 		}
 		$this->assign('list', $list);
@@ -67,10 +73,38 @@ class IndexAction extends Action{
 			$imglist= getimagesize($str[$i]);
 			$height=$imglist[1];
 			$with=$imglist[0];
-			$list[$i]['height']=(int)(220/$with*$height);
+			$list[$i]['height']=(int)(200/$with*$height)+38;
 			$i=$i+1;
 		}
         $this->ajaxReturn($list);
 	}
-	
+	public function hits()
+	{
+		$id=$_REQUEST['id'];
+		if($id)
+		{
+	     $model=M("collection");
+		 $isphoto=$model->where("id=$id")->find();
+                 if($isphoto)
+                 { 
+				 $model->where('id='.$id)->setInc("hits",1);
+				 }
+		}
+		//$this->redirect('Index/index');
+		$this->showmsg_box('操作成功',__APP__,0,0);
+	}
+	public function listcollection()
+	{
+		$id=$_REQUEST['id'];
+		$cover=M("collection")->where("id=$id")->select();
+		$list=M("picture")->where("cid=$id")->order('id DESC')->select();
+		$str="./Uploads/".$cover[0]['cover'];
+		$imglist= getimagesize($str);
+		$height=$imglist[1];
+		$with=$imglist[0];
+		$cover[0]['height']=(int)(200/$with*$height);
+		$this->assign('cover', $cover);
+		$this->assign('listpicture', $list);
+		$this->display();
+	}
 }
