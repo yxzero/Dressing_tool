@@ -32,7 +32,7 @@
 		<a href="<?php echo U('Index/listcollection',array('id'=>$vo['id']));?>">
 		<img src="__UPLOAD__/<?php echo ($vo["cover"]); ?>"  alt="<?php echo ($vo["coll_name"]); ?>"/>
 		</a>
-		<p style="font-family:'微软雅黑'"><?php echo ($vo["coll_name"]); ?>::			   
+		<p style="font-family:'微软雅黑'">
 		<a href="<?php echo U('Index/hits',array('id'=>$vo['id']));?>">赞</a>:<?php echo ($vo["hits"]); ?></p>
 		<input type="hidden" name="id" value="<?php echo ($vo["id"]); ?>"/>
 	</div><?php endforeach; endif; else: echo "" ;endif; ?>
@@ -58,7 +58,7 @@ $(function(){
 			//加载更多数据
 			loading.data("on", true).fadeIn();
 			$.get(
-				"<?php echo U('Index/getDbMore');?>", 
+				"<?php echo U('Index/getDbMoresort');?>", 
 				{"last_id" : $("#container>div:last>input").val()},
 				function(data){
 					var html = "";
@@ -68,7 +68,7 @@ $(function(){
 							html += "<div class=\"item\" style=\"height:"+data[i]['height']+"px;\">";
 							html += "<a href=\"<?php echo U('Index/listcollection',array('id'=>"+data[i]['id']+"));?>\">";
 							html += "<img src=\"__UPLOAD__/"+data[i]['cover']+"\" alt=\""+data[i]['cover']+"\" /></a>";
-							html += "<p style=\"font-family:'微软雅黑'\">"+data[i]['coll_name']+"::<a href=\"<?php echo U('Index/hits',array('id'=>"+data[i]['id']+"));?>\">赞</a>:"+data[i]['hits']+"</p>";   
+							html += "<p style=\"font-family:'微软雅黑'\"><a href=\"<?php echo U('Index/hits',array('id'=>"+data[i]['id']+"));?>\">赞</a>:"+data[i]['hits']+"</p>";   
 							html += "<input type=\"hidden\" name=\"id\" value=\""+data[i]['id']+"\"/></div>";
 						}
 						var $newElems = $(html).css({ opacity: 0 }).appendTo($container);

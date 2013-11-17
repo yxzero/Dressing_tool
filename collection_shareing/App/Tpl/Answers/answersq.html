@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -9,15 +9,49 @@
 </head>
 
 <body>
+
+<script type="text/javascript" src="/pubuliu/public/Js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="/pubuliu/public/Js/jquery.masonry.min.js"></script>
+<div class="top">
+<div name= menu class="menu" style="font-family:'微软雅黑'">
+	<li><a href="__APP__"><span>首页</span></li>
+  	<li><a href="{:U('Share/index')}"><span>晒搭配</span></a></li>
+  	<li class="photos"><a href="{:U('Login/index')}"><span>登陆</span></a></li>
+  	<li class="setting"><a href="{:U('Answers/index')}"><span>问答</span></a></li>
+	<li class="logout"><a href="{:U('Login/logout')}"><span>退出</span></a></li>
+	
+</div>
+</div>
+
 <div class="main">
-<h2>回答</h2>
-<form id="form1" method='post' action="{:U('Answers/putanswer')}">
+<volist name="allquestions" id="vo">
+<li>
+    <p>问题：{$vo.questions}</p>
+</li>
+</volist>
+<h3>所有回答</h3>
+<volist name="allanswers" id="vo">
+<div class="answer" style="微软雅黑">
+<li>
+	<p>{$vo.id}说道：</p></BR>
+    <p>{$vo.answers}</p></BR>
+</li>
+</div>
+</volist>
+<h3>回答</h3>
+
+<form id="form1" method='post' action="{:U('Answers/putanswer',array('queid'=>$vo['id']))}">
+
    <table cellpadding=2 cellspacing=2>
+ 
         <tr><td colspan="2"><div id="result" class="result" style="display:none;"></div></td></tr>
+		 
         <tr><td >您的建议</td><td><textarea name="content" id="content" rows="5" cols="45"></textarea></td></tr>
+		 
 		<td><input type="submit"  class="button" value="提交"></td>
 		</tr> 
    </table>
 </form>
+
 </body>
 </html>

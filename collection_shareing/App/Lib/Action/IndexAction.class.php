@@ -107,4 +107,42 @@ class IndexAction extends PublicAction{
 		$this->assign('listpicture', $list);
 		$this->display();
 	}
+	public function sorthits()
+	{
+		if( isset($_SESSION['name']) ){
+	   		echo "欢迎回来".$_SESSION['name'];
+		}else{
+	   		echo "未登录";
+		}
+		$list = M('collection')->order('hits DESC')->limit(10)->select();
+		$i=0;
+		while($i<10 && $list[$i]['cover'])
+		{
+			$str[$i]="./Uploads/".$list[$i]['cover'];
+			$imglist= getimagesize($str[$i]);
+			$height=$imglist[1];
+			$with=$imglist[0];
+			$list[$i]['height']=(int)(200/$with*$height)+38;
+			$i=$i+1;
+		}
+		$this->assign('list', $list);
+		$this->display();
+	}
+	public function getDbMoresort(){
+		$last_id = $this->_get('last_id');
+        $map['id'] = array('lt', $last_id);
+        $list = D('collection')->where($map)->order('hits DESC')->limit(3)->select();
+		$i=0;
+		while($i<3 && $list[$i]['cover'])
+		{
+			$str[$i]="./Uploads/".$list[$i]['cover'];
+			$imglist= getimagesize($str[$i]);
+			$height=$imglist[1];
+			$with=$imglist[0];
+			$list[$i]['height']=(int)(200/$with*$height)+38;
+			$i=$i+1;
+			
+		}
+        $this->ajaxReturn($list);
+	}
 }

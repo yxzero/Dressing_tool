@@ -7,6 +7,20 @@
 </head>
 
 <body>
+
+<script type="text/javascript" src="/pubuliu/public/Js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="/pubuliu/public/Js/jquery.masonry.min.js"></script>
+<div class="top">
+<div name= menu class="menu" style="font-family:'微软雅黑'">
+	<li><a href="__APP__"><span>首页</span></li>
+  	<li><a href="{:U('Share/index')}"><span>晒搭配</span></a></li>
+  	<li class="photos"><a href="{:U('Login/index')}"><span>登陆</span></a></li>
+  	<li class="setting"><a href="{:U('Answers/index')}"><span>问答</span></a></li>
+	<li class="logout"><a href="{:U('Login/logout')}"><span>退出</span></a></li>
+	
+</div>
+</div>
+
 <form id="form1" name="form1" method="post" action="{:U('Answers/que')}">
   <label>场合
   <input name="text_occasion" type="text" size="30" maxlength="20" />
@@ -19,7 +33,7 @@
 <h4>全部问题</h4>
 <volist name="allquestions" id="vo">
 <li>
-    <p>{$vo.questions}</p><a href="{:U('Answers/answersq',array('id'=>$vo['id']))}">我要回答</a>
+    <p style="微软雅黑">{$vo.questions}	<a href="{:U('Answers/answersq',array('queid'=>$vo['id']))}">我要回答</a></p>
 </li>
 </volist>
 

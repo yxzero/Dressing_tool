@@ -77,6 +77,8 @@ body {
 	border: 2px solid #D4D4D4;
 }
 
+.answer {
+	width:600; height:200; background:#f0f0f0; border: 1px solid #ddd; padding:5px; position: relative; overflow:scroll}
 
 div{ padding: 3px 20px;} 
 h2{font-size:36px}

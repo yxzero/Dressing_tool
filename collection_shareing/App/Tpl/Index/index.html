@@ -26,13 +26,14 @@
  	<a href="{:U('Index/tagfind',array('altag'=>'运动'))}">运动</a><BR />
 	<a href="{:U('Index/tagfind',array('altag'=>'上班'))}">上班</a><BR />
 	<a href="{:U('Index/tagfind',array('altag'=>'家居'))}">家居</a><BR />	
+	<a href="{:U('Index/sorthits')}">赞降序排序</a><BR />	
 	</div>
 <volist name="list" id="vo">
 		<div class="item" style="height:{$vo.height}px;">
 		<a href="{:U('Index/listcollection',array('id'=>$vo['id']))}">
 		<img src="__UPLOAD__/{$vo.cover}"  alt="{$vo.coll_name}"/>
 		</a>
-		<p style="font-family:'微软雅黑'">
+		<p style="font-family:'微软雅黑'">{$vo.coll_name}::			   
 		<a href="{:U('Index/hits',array('id'=>$vo['id']))}">赞</a>:{$vo.hits}</p>
 		<input type="hidden" name="id" value="{$vo.id}"/>
 	</div>
@@ -69,7 +70,7 @@ $(function(){
 							html += "<div class=\"item\" style=\"height:"+data[i]['height']+"px;\">";
 							html += "<a href=\"{:U('Index/listcollection',array('id'=>"+data[i]['id']+"))}\">";
 							html += "<img src=\"__UPLOAD__/"+data[i]['cover']+"\" alt=\""+data[i]['cover']+"\" /></a>";
-							html += "<p style=\"font-family:'微软雅黑'\"><a href=\"{:U('Index/hits',array('id'=>"+data[i]['id']+"))}\">赞</a>:"+data[i]['hits']+"</p>";   
+							html += "<p style=\"font-family:'微软雅黑'\">"+data[i]['coll_name']+"::<a href=\"{:U('Index/hits',array('id'=>"+data[i]['id']+"))}\">赞</a>:"+data[i]['hits']+"</p>";   
 							html += "<input type=\"hidden\" name=\"id\" value=\""+data[i]['id']+"\"/></div>";
 						}
 						var $newElems = $(html).css({ opacity: 0 }).appendTo($container);
