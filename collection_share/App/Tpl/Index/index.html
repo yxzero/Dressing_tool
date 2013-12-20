@@ -1,0 +1,132 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<load href="../Public/Css/style.css"/>
+ <link href="../Public/Css/SpryTabbedPanels.css" rel="stylesheet" type="text/css" />
+<script src="../Public/Js/swfobject_modified.js" type="text/javascript"></script>
+<script src="../Public/Js/SpryTabbedPanels.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    function MM_swapImgRestore() 
+    { 
+  		var i,x,a=document.MM_sr; for(i=0;a&&i<a.length&&(x=a[i])&&x.oSrc;i++) x.src=x.oSrc;
+    }
+    function MM_swapImage() 
+    { 
+  		var i,j=0,x,a=MM_swapImage.arguments; document.MM_sr=new Array; for(i=0;i<(a.length-2);i+=3)
+   		if ((x=MM_findObj(a[i]))!=null){document.MM_sr[j++]=x; if(!x.oSrc) x.oSrc=x.src; x.src=a[i+2];}
+	}
+</script>
+<title>穿衣利器</title>
+</head>
+<body>
+<script type="text/javascript" src="../Public/Js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../Public/Js/jquery.masonry.min.js"></script>
+  <!--<div class="top">-->
+<div name= menu1 class="menu1" style="font-family:'微软雅黑'">
+    <a href="__APP__"><span>首页</span></li>
+  	<a href="{:U('Share/index')}"><span>晒搭配</span></a>
+  	<a href="{:U('Login/index')}"><span>登陆</span></a>
+  	<a href="{:U('Answers/index')}"><span>问答</span></a>
+	<a href="{:U('Login/logout')}"><span>退出</span></a>
+	
+</div>
+<!--</div>-->
+  <!--   <div id="menu">
+        <a href="__APP__" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image1','','../Public/Images/mainpage2.png',1)">
+            <img src="../Public/Images/mainpage1.png" width="200" height="35" id="Image1" /></a>
+        <a href="{:U('Share/index')}" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image2','','../Public/Images/share2.png',1)">
+            <img src="../Public/Images/share1.png" width="200" height="35" id="Image2" /></a>
+        <a href="{:U('Answers/index')}" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image3','','../Public/Images/answer2.png',1)">
+            <img src="../Public/Images/answer1.png" width="200" height="35" id="Image3" /></a>
+        <a href="{:U('Login/index')}" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image4','','../Public/Images/login2.png',1)">
+            <img src="../Public/Images/login1.png" width="200" height="35" id="Image4" /></a>
+        <a href="{:U('Login/logout')}" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image5','','../Public/Images/exit2.png',1)">
+            <img src="../Public/Images/exit1.png" width="200" height="35" id="Image5" /></a>
+  
+    </div>-->
+    <div name= menulist class="menulist" style="font-family:'微软雅黑'">	
+  	<a href="{:U('Index/tagfind',array('altag'=>'面试'))}">面试</a>
+  	<a href="{:U('Index/tagfind',array('altag'=>'约会'))}">约会</a>
+  	<a href="{:U('Index/tagfind',array('altag'=>'晚会'))}">晚会</a>
+ 	<a href="{:U('Index/tagfind',array('altag'=>'运动'))}">运动</a>
+	<a href="{:U('Index/tagfind',array('altag'=>'上班'))}">上班</a>
+	<a href="{:U('Index/tagfind',array('altag'=>'家居'))}">家居</a>
+	<a href="{:U('Index/sorthits')}">赞降序排序</a><BR />	
+	</div>
+    
+<div id="container" class=" container" >
+<volist name="list" id="vo">
+		<div class="item" style="height:{$vo.height};">
+		<a href="{:U('Index/listcollection',array('id'=>$vo['id']))}">
+		<img src="__PUBLIC__/upload/{$vo.cover}"  alt="{$vo.coll_name}"/>
+		</a>
+		<p style="font-family:'微软雅黑'">{$vo.coll_name}::			   
+		<a href="{:U('Index/hits',array('id'=>$vo['id']))}">赞</a>:{$vo.hits}</p>
+		<input type="hidden" name="id" value="{$vo.id}"/>
+	</div>
+</volist>
+</div>
+<div id="loading" class="loading-wrap">
+	<span class="loading">加载中，请稍后...</span>
+</div>
+<div class="footer"></div>
+    <script type="text/javascript">
+$(function(){
+    //执行瀑布流
+    var $container = $('#container');
+     $container.masonry({
+        itemSelector : '.item',
+        isAnimated: true
+     });
+    var loading = $("#loading").data("on", false);
+    $(window).scroll(function(){
+        if(loading.data("on")) return;
+        if($(document).scrollTop() > $(document).height()-$(window).height()-$('.footer').height())//加载更多数据
+        {
+            loading.data("on", true).fadeIn();
+            $.get(
+                "{:U('Index/getDbMore')}", 
+				{"last_id" : $("#container>div:last>input").val()},
+				function(data){
+					var html = "";
+					if($.isArray(data)){
+						for(i in data){
+                            //alert(data[i]['id']);
+							html += "<div class=\"item\" style=\"height:"+data[i]['height']+"px;\">";	
+                            html += "<a href=\"index.php/listcollection/"+data[i]['id']+"\">";
+							html += "<img src=\"__PUBLIC__/upload/"+data[i]['cover']+"\" alt=\""+data[i]['cover']+"\" /></a>";
+                            html += "<p style=\"font-family:'微软雅黑'\">"+data[i]['coll_name']+"::<a href=\"index.php/hits/"+data[i]['id']+"\">赞</a>:"+data[i]['hits']+"</p>";
+							html += "<input type=\"hidden\" name=\"id\" value=\""+data[i]['id']+"\"/></div>";
+						}
+						var $newElems = $(html).css({ opacity: 0 }).appendTo($container);
+						$newElems.imagesLoaded(function(){
+							$newElems.animate({ opacity: 1 });
+							$container.masonry( 'appended', $newElems, true ); 
+				        });
+				        loading.data("on", false);
+					}
+					loading.fadeOut();
+				},
+				"json"
+			);
+        }
+    });
+});
+</script>
+</body>
+     <footer>
+		<div class="container_12">
+			<div class="wrapper">
+				<div class="grid_8">
+					Design Maniacs &copy; 2013 &nbsp;  | &nbsp;  Website Template Collect from 
+				</div>
+				<div class="grid_4">
+					<div class="social">
+						My Social:<a href="#"><img src="images/facebook-icon.png" alt=""></a><a href="#"><img src="images/twitter-icon.png" alt=""></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+</html>

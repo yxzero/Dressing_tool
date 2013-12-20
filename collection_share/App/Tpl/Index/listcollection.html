@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+ <head>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+ <load href="../Public/Css/style.css"/>
+  <link href="../Public/Css/list.css" rel="stylesheet" type="text/css" />
+
+ <load href="../Public/Js/Jquery/jquery.form.js" />
+ <load href="../Public/Js/Jquery/jquery.min.js" />
+  <title>穿衣利器</title>
+ </head>
+ <body>
+<script type="text/javascript" src="../Public/Js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="../Public/Js/jquery.masonry.min.js"></script>
+<!--<div class="top">-->
+<div name= menu1 class="menu1" style="font-family:'微软雅黑'">
+    <a href="__APP__"><span>首页</span></a>
+  	<a href="{:U('Share/index')}"><span>晒搭配</span></a>
+  	<a href="{:U('Login/index')}"><span>登陆</span></a>
+  	<a href="{:U('Answers/index')}"><span>问答</span></a>
+	<a href="{:U('Login/logout')}"><span>退出</span></a>
+	
+</div>
+<!--</div>-->
+  <!--   <div id="menu">
+        <a href="__APP__" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image1','','../Public/Images/mainpage2.png',1)">
+            <img src="../Public/Images/mainpage1.png" width="200" height="35" id="Image1" /></a>
+        <a href="{:U('Share/index')}" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image2','','../Public/Images/share2.png',1)">
+            <img src="../Public/Images/share1.png" width="200" height="35" id="Image2" /></a>
+        <a href="{:U('Answers/index')}" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image3','','../Public/Images/answer2.png',1)">
+            <img src="../Public/Images/answer1.png" width="200" height="35" id="Image3" /></a>
+        <a href="{:U('Login/index')}" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image4','','../Public/Images/login2.png',1)">
+            <img src="../Public/Images/login1.png" width="200" height="35" id="Image4" /></a>
+        <a href="{:U('Login/logout')}" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image5','','../Public/Images/exit2.png',1)">
+            <img src="../Public/Images/exit1.png" width="200" height="35" id="Image5" /></a>
+  
+    </div>-->
+<div class="content_box">
+    <volist name="cover" id="vo">
+        <div class="divh3"><p>她/他说：{$vo.coll_name}</p></div>
+		<div class="item" style="height:{$vo.height}px;">
+            
+		<img src="__PUBLIC__/upload/{$vo.cover}"/>               
+	</div>
+        <input type="hidden" name="id" value="{$vo.id}"/>
+     </volist>
+
+    <volist name="listpicture" id="vo">
+		<div class="itemmain">
+		<img src="__PUBLIC__/upload/{$vo.name}" alt="{$vo.tag}"/>
+		<p style="font-family:'微软雅黑'">{$vo.tag}：<\BR>
+			价格：{$vo.prize}<\BR>
+			<a href={$vo.link}>去看看</a>
+		</p>
+         <input type="hidden" name="id" value="{$vo.id}"/>
+		</div>
+       </volist>
+</div>
+
+    
+    <div class="content_box">
+        <h4>大家的建议：</h4>
+        <div class="clr"></div>
+            <volist name="list" id="vo">
+            <div class="reviewmain">
+				<p>{$vo.usrname}说道：</BR></BR>
+    			{$vo.review}</BR></p>
+				<input type="hidden" name="id" value="{$vo.id}"/>
+    		</div>
+    	</volist>
+     <div class="clr"></div>
+     <div class="clr"></div>
+     
+     {$page} 
+     <div class="clr"></div>
+	</div>
+    <div class="content_box">
+        <form id="form1" method='post' action="{:U('Index/putreview')}">
+
+   <table cellpadding=2 cellspacing=2>
+ 
+        <tr><td colspan="2"><div id="result" class="result" style="display:none;"></div></td></tr>
+		 
+        <tr><td >评价</td><td><textarea name="content" id="content" rows="5" cols="45"></textarea></td></tr>
+		 
+		<td><input type="submit"  class="button" value="提交"></td>
+		</tr> 
+   </table>
+</form>
+</div>
+</div>
+</body>
+</html>

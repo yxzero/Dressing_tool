@@ -1,0 +1,59 @@
+[ 2013-11-20T16:58:15+08:00 ] 127.0.0.1 /collection_shareing/index.php
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.002073s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.059739s ]
+SQL: SHOW COLUMNS FROM `think_config` [ RunTime:0.039552s ]
+ERR: 1146:Table 'share.think_config' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `think_config`
+SQL: SELECT * FROM `think_config` WHERE ( `id` = 1 ) LIMIT 1   [ RunTime:0.000819s ]
+ERR: 1146:Table 'share.think_config' doesn't exist
+ [ SQL语句 ] : SELECT * FROM `think_config` WHERE ( `id` = 1 ) LIMIT 1  
+SQL: SHOW COLUMNS FROM `think_collection` [ RunTime:0.007328s ]
+SQL: SELECT * FROM `think_collection` ORDER BY id DESC LIMIT 10   [ RunTime:0.000966s ]
+INFO: [ view_parse ] --START--
+INFO: ParseTemplate Behavior ::run [ RunTime:0.099397s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.099527s ]
+INFO: [ view_filter ] --START--
+INFO: ContentReplace Behavior ::run [ RunTime:0.001453s ]
+INFO: TokenBuild Behavior ::run [ RunTime:0.000856s ]
+INFO: WriteHtmlCache Behavior ::run [ RunTime:0.000911s ]
+INFO: ShowRuntime Behavior ::run [ RunTime:0.000953s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.004418s ]
+INFO: [ view_end ] --START--
+INFO: ShowPageTrace Behavior ::run [ RunTime:0.001252s ]
+INFO: [ view_end ] --END-- [ RunTime:0.001375s ]
+
+[ 2013-11-20T16:58:18+08:00 ] 127.0.0.1 /collection_shareing/index.php/Index/getDbMore.html?last_id=19
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.001673s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001815s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000969s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001061s ]
+SQL: SHOW COLUMNS FROM `think_config` [ RunTime:0.007890s ]
+ERR: 1146:Table 'share.think_config' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `think_config`
+SQL: SELECT * FROM `think_config` WHERE ( `id` = 1 ) LIMIT 1   [ RunTime:0.000746s ]
+ERR: 1146:Table 'share.think_config' doesn't exist
+ [ SQL语句 ] : SELECT * FROM `think_config` WHERE ( `id` = 1 ) LIMIT 1  
+NOTIC: 建议使用I方法替代_get
+SQL: SHOW COLUMNS FROM `think_collection` [ RunTime:0.006427s ]
+SQL: SELECT * FROM `think_collection` WHERE ( `id` < '19' ) ORDER BY id DESC LIMIT 3   [ RunTime:0.000712s ]
+
+[ 2013-11-20T16:58:21+08:00 ] 127.0.0.1 /collection_shareing/index.php/Index/getDbMore.html?last_id=14
+INFO: [ route_check ] --START--
+INFO: CheckRoute Behavior ::run [ RunTime:0.001219s ]
+INFO: [ route_check ] --END-- [ RunTime:0.001372s ]
+INFO: [ app_begin ] --START--
+INFO: ReadHtmlCache Behavior ::run [ RunTime:0.000846s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000941s ]
+SQL: SHOW COLUMNS FROM `think_config` [ RunTime:0.011500s ]
+ERR: 1146:Table 'share.think_config' doesn't exist
+ [ SQL语句 ] : SHOW COLUMNS FROM `think_config`
+SQL: SELECT * FROM `think_config` WHERE ( `id` = 1 ) LIMIT 1   [ RunTime:0.001289s ]
+ERR: 1146:Table 'share.think_config' doesn't exist
+ [ SQL语句 ] : SELECT * FROM `think_config` WHERE ( `id` = 1 ) LIMIT 1  
+NOTIC: 建议使用I方法替代_get
+SQL: SHOW COLUMNS FROM `think_collection` [ RunTime:0.014103s ]
+SQL: SELECT * FROM `think_collection` WHERE ( `id` < '14' ) ORDER BY id DESC LIMIT 3   [ RunTime:0.000648s ]
+

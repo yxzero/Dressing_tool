@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<load href="../Public/Css/style.css"/>
+<title>问答</title>
+</head>
+
+<body>
+
+<script type="text/javascript" src="/pubuliu/public/Js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="/pubuliu/public/Js/jquery.masonry.min.js"></script>
+<!--<div class="top">-->
+<div name= menu2 class="menu2" style="font-family:'微软雅黑'">
+    <a href="__APP__"><span>首页</span></li>
+  	<a href="{:U('Share/index')}"><span>晒搭配</span></a>
+  	<a href="{:U('Login/index')}"><span>登陆</span></a>
+  	<a href="{:U('Answers/index')}"><span>问答</span></a>
+	<a href="{:U('Login/logout')}"><span>退出</span></a>
+	
+</div>
+<!--</div>-->
+  <!--   <div id="menu">
+        <a href="__APP__" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image1','','../Public/Images/mainpage2.png',1)">
+            <img src="../Public/Images/mainpage1.png" width="200" height="35" id="Image1" /></a>
+        <a href="{:U('Share/index')}" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image2','','../Public/Images/share2.png',1)">
+            <img src="../Public/Images/share1.png" width="200" height="35" id="Image2" /></a>
+        <a href="{:U('Answers/index')}" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image3','','../Public/Images/answer2.png',1)">
+            <img src="../Public/Images/answer1.png" width="200" height="35" id="Image3" /></a>
+        <a href="{:U('Login/index')}" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image4','','../Public/Images/login2.png',1)">
+            <img src="../Public/Images/login1.png" width="200" height="35" id="Image4" /></a>
+        <a href="{:U('Login/logout')}" onmouseout="MM_swapImgRestore()" onmouseover="MM_swapImage('Image5','','../Public/Images/exit2.png',1)">
+            <img src="../Public/Images/exit1.png" width="200" height="35" id="Image5" /></a>
+  
+    </div>-->
+<div class="main">
+<form id="form1" name="form1" method="post" action="{:U('Answers/que')}">
+  <label>场合
+  <input name="text_occasion" type="text" size="30" maxlength="20" />
+  </label>
+  <label>风格/类型
+  <input name="text_style" type="text" size="30" maxlength="20" />
+  </label>
+  <input type="submit" name="submit" value="提问" class="button" />
+</form>
+<h4>全部问题</h4>
+<volist name="allquestions" id="vo">
+<li>
+    <p style="微软雅黑">{$vo.questions}	<a href="{:U('Answers/answersq',array('queid'=>$vo['id']))}">我要回答</a></p>
+</li>
+</volist>
+</div>
+</body>
+</html>

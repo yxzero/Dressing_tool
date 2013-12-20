@@ -1,0 +1,16 @@
+@charset "utf-8";
+/* CSS Document */
+.content_box{margin-top:35px; border-bottom:1px solid #848484; border-right:1px solid #cccccc; background:#fff; padding:15px;border-radius:10px;-webkit-border-radius:10px;-khtml-border-radius:10px;}
+.reviewmain {
+	border-bottom:solid 1px #e6437b;
+    color: red;
+    margin: 0 10px 10px 0;
+    padding: 10px;
+    position: relative;
+    width: 730px;
+	height:80px;
+}
+.reviewmain p{color:#666666}
+.divh3{width:450px;height:20px;position: relative;float:right;position: relative;}
+.divh3 p{width:450; height:20px;position:absolute; left:0;font-size:26px;}
+.clr{clear:both;}
